@@ -1,0 +1,60 @@
+<%= form_with model: @room do |f| %>
+  <table>
+    <tr>
+      <th>
+        <%= f.label :room_name ,"ルーム名" %>
+      </th>
+      <td>
+        <%= f.text_field :room_name %>
+      </td>
+    </tr>
+
+    <tr>
+      <th>
+        <%= f.label :room_introduction ,"ルーム紹介" %>
+      </th>
+      <td>
+        <%= f.text_area :room_introduction %>
+      </td>
+    </tr>
+
+    <tr>
+      <th>
+        <%= f.label :charge ,"料金" %>
+      </th>
+      <td>
+        <%= f.text_field :charge %>
+      </td>
+    </tr>
+
+    <tr>
+      <th>
+        <%= f.label :adress ,"住所" %>
+      </th>
+      <td>
+          <%= f.text_field :adress %>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th>
+        <%= f.label :img ,"ルーム画像" %>
+      </th>
+      <td>
+        <%= f.text_area :img %>
+      </td>
+    </tr>
+  </table>
+
+  <div>
+    <p>
+      <%= f.submit "登録完了する" %>
+    </p>
+    <p>
+      <%= link_to "ユーザー情報一覧に戻る" , "rooms_index_path" %>
+    </p>
+
+
+  </div>
+  <% end %>

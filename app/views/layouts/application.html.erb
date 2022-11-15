@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RentARoom</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-logo">
+        <a href="/">レンタルーム</a>
+      </div>
+
+      <ul class="header-menus">
+        <!-- <li><a>レンタルームとは</a></li> -->
+        <% if user_signed_in? %>
+          <li class="sub">
+            <li><img src="ziro.jpg" class="ziro">
+              <ul class="sub-list">
+                <li><%= link_to "アカウント", "/users/:id"%></li>
+                <li class="sub">ルーム予約</li><br>
+                <li class="sub">予約済みルーム一覧</li><br>
+                <li class="sub">登録済みルーム一覧</li><br>
+                <li class="sub">
+                </li><br>
+              </ul>
+            </li>
+            <li>
+              <a>
+                <%= link_to "ログアウト" , "/users/sign_out" , method: :delete %>
+              </a>
+            </li>
+            <li>
+              <a>
+                <%= link_to "新規登録" , "/users/sign_up" %>
+              </a>
+            </li>
+          </li>
+        <% else %>
+          <li class="sub">
+            <li><a><%= link_to "新規登録" , "/users/sign_up" %></a></li>
+            <li><a><%= link_to "ログイン" , "/users/sign_in" %></a></li>
+          </li>
+        <% end %>
+      </ul>
+
+    </header>
+    <div class="message">
+      <p class="notice">
+        <%= notice %>
+      </p>
+      <p class="alert">
+        <%= alert %>
+      </p>
+    </div>
+
+    <%= yield %>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+.box-inner h2 {
+  text-align: center;
+}
+
+.box-inner th {
+  padding-right: 10px;
+  text-align: left;
+}
+
+.link p {
+  font-size: 200%;
+  text-align: center;
+  position: relative;
+  line-height: 20px;
+  // top:200px;
+}
+
+.link p:first-child {
+  margin-top: 40px;
+}
