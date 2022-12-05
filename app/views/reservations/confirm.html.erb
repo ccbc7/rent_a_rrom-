@@ -1,0 +1,13 @@
+<h1>
+  <%= @reservation.room_name %>
+</h1>
+
+<p>
+</p>
+
+<%= form_with model: @reservation, local: true do |f| %>
+  <%= f.hidden_field :room_name %>
+    <%= f.hidden_field :start_day %>
+      <%= f.submit "予約する" %>
+        <%= f.submit "修正する" , name: "back" %>
+          <% end %>

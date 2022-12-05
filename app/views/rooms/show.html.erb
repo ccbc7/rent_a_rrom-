@@ -1,7 +1,7 @@
-<h3 class="result">登録件数：<%= @all_rooms.all.count(:id) %>件</h3>
+<h3 class="result">登録済みルーム一覧：<%= @rooms.all.count(:id) %>件</h3>
 <div class="outer_box">
-  <% @all_rooms.each do |r| %>
-    
+  <% @rooms.each do |r| %>
+  <%= link_to edit_reservation_path(r.id) do %>
     <div class="sample_box">
       <% if r.room_image.attached? %>
         <div class="room_image">
@@ -18,6 +18,18 @@
           <li class="charge">
             ¥<%= r.charge %>
           </li>
+          <li>
+            <!-- <%= link_to "削除", r, method: :delete, data: { confirm: "このルームを削除しますか？" } %> -->
+          </li>
     </div>
     <% end %>
+    <% end %>
+
 </div>
+
+
+<!-- <div class="boxes">
+    <div class="box_1">1</div>
+    <div class="box_2">2</div>
+    <div class="box_3">3</div>
+  </div> -->

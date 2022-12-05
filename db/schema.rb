@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_09_215250) do
+ActiveRecord::Schema.define(version: 2022_12_04_003717) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,21 @@ ActiveRecord::Schema.define(version: 2022_11_09_215250) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.string "room_name"
+    t.string "room_introduction"
+    t.integer "charge"
+    t.string "adress"
+    t.string "img"
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "start_day"
+    t.datetime "end_day"
+    t.integer "people"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "room_name"
     t.string "room_introduction"
@@ -48,6 +63,10 @@ ActiveRecord::Schema.define(version: 2022_11_09_215250) do
     t.string "img"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.datetime "start_day"
+    t.datetime "end_day"
+    t.integer "people"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,6 +79,8 @@ ActiveRecord::Schema.define(version: 2022_11_09_215250) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
+    t.string "introduction"
+    t.string "profile_image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

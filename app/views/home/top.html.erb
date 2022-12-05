@@ -2,8 +2,16 @@
 <div class="main top-main">
   <div class="top-message">
     <h2>まだ体験したことのない旅をしよう</h2>
-    <li>
-      <%= link_to "アカウント" ,user_path(@user) %>
-    </li>
   </div>
+  <%= search_form_for @q, url: home_index_path do |f| %>
+    <div class="search-outer-box">
+      <%= f.label :room_name_cont, 'キーワード' %>
+      <!-- <div class="inner-box"> -->
+        <%= f.search_field :room_name_or_adress_cont, class: "search-box" , placeholder:"東京" %>
+        <%= f.submit '探す', class: "search-submit" %>
+
+        <%= link_to "デモ", reservations_path %>
+      <!-- </div> -->
+    </div>
+  <% end %>
 </div>

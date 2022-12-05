@@ -18,11 +18,11 @@
 
     <div class="field">
       <div class="box-password">
-        <%= f.label :password, "パスワード" %> <i>(変更しない場合は空白にしてください。)</i><br />
+        <%= f.label :password, "パスワード(変更しない場合は空白にしてください。)" %> <i></i><br />
         <%= f.password_field :password, autocomplete: "new-password" %>
         <% if @minimum_password_length %>
           <br />
-          <em><%= @minimum_password_length %> characters minimum</em>
+          <p><%= @minimum_password_length %> <%= "文字以上" %></p>
         <% end %>
       </div>
     </div>
@@ -36,7 +36,7 @@
 
     <div class="field">
       <div class="box-password">
-        <%= f.label :current_password, "現在のパスワード" %> <i>（変更内容を確認するため、現在のパスワードが必要です。)</i><br />
+        <%= f.label :current_password, "現在のパスワード（変更内容を確認するため、現在のパスワードが必要です。)" %> <i></i><br />
         <%= f.password_field :current_password, autocomplete: "current-password" %>
       </div>
     </div>
