@@ -3,21 +3,15 @@ Rails.application.routes.draw do
   get 'home/top'
   resources :home
 
-
-  resources :reservations
-      resources 'reservations' do
-      collection do
-        post 'confirm'
-      end
+  resources :reservations do
       member do
-        patch 'edit_confirm'
+        post :confirm
       end
     end
-    
+
   devise_for :users
-  resources :users, :only => [:show]
   resources :users
-  get "/home/top"
+
   resources :application do
     collection do
       get 'search'

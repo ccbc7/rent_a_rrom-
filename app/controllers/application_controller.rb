@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :set_q, only: [:index, :search]
+  before_action :set_q
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -19,11 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-
   # ----ransack---
-
-
-
   def search
     if @q.result.present?
       @results = @q.result

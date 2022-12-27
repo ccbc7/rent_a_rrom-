@@ -1,12 +1,12 @@
 <h1>
   edit_confirm
 </h1>
-<%= render "devise/shared/error" , obj: @room %>
+<%= render "devise/shared/error" , obj: @reservation %>
   <div class="box">
     <div class="box-inner">
       <h3 style="text-align: center;">確認フォーム</h3>
 
-    <%= form_with model: @room, url: reservation_path,local: true do |f| %>
+    <%= form_with model: @reservation, url: reservation_path,local: true do |f| %>
       <% if @room.room_image.attached? %>
       <div class="room_image">
         <%= image_tag @room.room_image , class:"edit_room_image"%>
@@ -81,6 +81,7 @@
               <%= f.hidden_field :start_day %>
               <%= f.hidden_field :end_day %>
               <%= f.hidden_field :people %>
+              <%= f.hidden_field :charge %>
               <%= f.hidden_field :id %>
             </p>
           </div>

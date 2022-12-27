@@ -3,7 +3,7 @@
     <div class="box-inner">
       <h3 style="text-align: center;">予約フォーム</h3>
 
-      <%= form_with model: @room, url: edit_confirm_reservation_path(@room), local: true do |f| %>
+      <%= form_with url: edit_confirm_reservation_path(@room), local: true do |f| %>
 
         <% if @room.room_image.attached? %>
           <div class="room_image">

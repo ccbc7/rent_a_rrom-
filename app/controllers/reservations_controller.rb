@@ -1,5 +1,4 @@
 class ReservationsController < ApplicationController
-  before_action :set_q, only: [:index, :search]
 
   def index
     @user = current_user
@@ -9,16 +8,14 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @room = Room.find(params[:id])
-    @reservation = Room.new
     @user = current_user
-    @q = Room.ransack(params[:q])
-    @results = @q.result
+    @room = Room.find(params[:id])
+    @reservation = Reservation.new
   end
 
   def confirm
-    @reservation = Room.new(room_params)
-    render :edit if @room.invalid?
+    @user = current_user
+    @reservation = Reservation.new(reservation_params)
   end
 
   def create
@@ -35,7 +32,6 @@ class ReservationsController < ApplicationController
     @user = current_user
     @q = Room.ransack(params[:q])
     @results = @q.result
-
   end
 
   def edit
@@ -45,18 +41,18 @@ class ReservationsController < ApplicationController
     @results = @q.result
   end
 
-  def edit_confirm
-    # @reservation = Room.new(room_params)
-    # render :new if @room.invalid?
-    params.require(:room).permit(:start_day, :end_day, :people, :room_name, :adress, :charge)
-    @user = current_user
-    @q = Room.ransack(params[:q])
-    @results = @q.result
-    @room = Room.find(params[:id])
-    @room.attributes = room_params
-    render :edit if @room.invalid?
+  # def edit_confirm
+  #   @reservation = Reservation.new(@attr)
+  #   # render :new if @room.invalid?
+  #   # params.require(:reservation).permit(:start_day, :end_day, :people, :room_name, :adress, :charge)
+  #   @user = current_user
+  #   @q = Room.ransack(params[:q])
+  #   @results = @q.result
+  #   @room = Room.find(params[:id])
+  #   # @room.attributes = reservation_params
+  #   render :edit if @reservation.invalid?
 
-  end
+  # end
 
   def update
     @q = Room.ransack(params[:q])
@@ -64,8 +60,7 @@ class ReservationsController < ApplicationController
     @user = current_user
     @room = Room.find(params[:id])
 
-    # binding.pry
-    if params[:back] || !@room.update(params.require(:room).permit(:start_day, :end_day, :people, :room_name, :adress, :charge))
+    if params[:back] || !@reservation.save(params.require(:reservation).permit(:start_day, :end_day, :people, :room_name, :adress, :charge))
       render "edit_reservation_path"
     else
       redirect_to "reservation_path"
@@ -77,14 +72,15 @@ class ReservationsController < ApplicationController
   end
 
   private
+  # def set_q
+  #   @q = Room.ransack(params[:q])
+  # end
 
-  def set_q
-    @q = Room.ransack(params[:q])
+  def reservation_params
+    params.permit(:start_day, :room_name, :end_day, :people, :charge, :adress)
   end
 
-  def room_params
-    params.require(:room).permit(:room_image)
-  end
+
 
 
 

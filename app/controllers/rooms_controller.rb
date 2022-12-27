@@ -5,7 +5,6 @@ class RoomsController < ApplicationController
     @all_rooms = Room.all
     @user = current_user
     @rooms = @user.rooms
-
   end
 
   def new
@@ -54,25 +53,26 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @q = Room.ransack(params[:q])
     @results = @q.result
+
   end
 
-  def edit_confirm
+  # def edit_confirm
     # @reservation = Room.new(room_params)
     # render :new if @room.invalid?
-    @user = current_user
-    @q = Room.ransack(params[:q])
-    @results = @q.result
-    @room = Room.find(params[:id])
-    @room.attributes = room_params
-    render :edit if @room.invalid?
-  end
+  #   @user = current_user
+  #   @q = Room.ransack(params[:q])
+  #   @results = @q.result
+  #   @room = Room.find(params[:id])
+  #   @room.attributes = room_params
+  #   render :edit if @room.invalid?
+  # end
 
 
   def update
     @q = Room.ransack(params[:q])
     @results = @q.result
     @user = current_user
-    
+
     @room = Room.find(params[:id])
 
     if params[:back] || !@room.update(params.require(:room).permit(:start_day, :end_day, :people, :room_name, :adress, :charge))
@@ -84,7 +84,10 @@ class RoomsController < ApplicationController
   end
 
   def destroy
-
+    @room = Room.find(params[:id])
+    @room.destroy
+    flash[:notice] = "ルームを削除しました"
+    redirect_to "/rooms/:id"
   end
 
 

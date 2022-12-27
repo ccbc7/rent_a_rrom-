@@ -1,6 +1,47 @@
 <h1>
-  <%= @reservation.room_name %>
+  確認画面
 </h1>
+
+<table>
+<tr>
+  <th>ルームネーム:</th>
+  <td>
+    <%= @reservation.room_name %>
+  </td>
+</tr>
+<tr>
+  <th>開始日：</th>
+  <td>
+    <%= @reservation.start_day.to_s(:datetime_jp) %>
+  </td>
+</tr>
+<tr>
+  <th>終了日：</th>
+  <td>
+    <%= @reservation.end_day.to_s(:datetime_jp) %>
+  </td>
+</tr>
+<tr>
+  <th>日額:</th>
+  <td>
+    <%= @reservation.charge %>円
+  </td>
+</tr>
+<tr>
+  <th>人数:</th>
+  <td>
+    <%= @reservation.people %>人
+  </td>
+</tr>
+<tr>
+  <th>合計料金:</th>
+  <td>
+    円
+  </td>
+</tr>
+
+
+</table>
 
 <p>
 </p>

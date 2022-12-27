@@ -31,4 +31,5 @@ class Room < ApplicationRecord
       charge * people * total_days
     end
 
+    has_many :reservations
 end

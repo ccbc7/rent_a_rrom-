@@ -1,7 +1,7 @@
 <h3 class="result">検索結果：<%= @results.count(:id) %>件</h3>
 <div class="outer_box">
 <% @results.each do |r| %>
-  <%= link_to  edit_reservation_path(r.id) do %>
+  <%= link_to  new_reservation_path(r.id) do %>
       <div class="sample_box">
         <% if r.room_image.attached? %>
             <%= image_tag r.room_image , class:"index_room_image"%>
@@ -16,11 +16,10 @@
           ¥<%= r.charge %>
         </li>
         <li class="ID">
-          <%= r.id%>
-        </li>
-        <li>
+          [ID]<%= r.id %>
         </li>
       </div>
   <% end %>
+
 <% end %>
     </div>
